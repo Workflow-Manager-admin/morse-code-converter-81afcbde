@@ -32,6 +32,12 @@
     padding: 0 0 2.5em 0;
 }
 /* Wraps the actual converter UI fields */
+/* 
+ * Make .converterArea spatially robust on large screens:
+ * - Use extra spacing/gaps at >1200px
+ * - Prevent overlap with labels, fields, and decorative elements
+ * - Retain responsive compactness at lower widths
+ */
 .converterArea {
     width: 100%;
     display: flex;
@@ -41,28 +47,62 @@
     background: transparent;
     border-radius: 24px;
     box-sizing: border-box;
+    z-index: 3;
+    margin-top: 0;
+}
+
+@media (min-width: 1200px) {
+    .converterArea {
+        padding: 3.2em 3.2em 1.8em 3.2em;
+        max-width: 1050px;
+        min-width: 660px;
+        margin: 0 auto;
+        box-shadow: 0 10px 38px 0 rgba(36, 50, 85, 0.11);
+    }
 }
 /* Row for input/output labels and switch */
 .labelsRow {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     justify-content: space-between;
-    gap: 1.5em;
-    margin-bottom: 0.5em;
+    gap: 2.4em;
+    margin-bottom: 0.8em;
+    position: relative;
+    z-index: 4;
+}
+@media (min-width: 1200px) {
+    .labelsRow {
+        gap: 4em;
+        margin-bottom: 1.2em;
+        padding-right: 3em;
+        padding-left: 1em;
+    }
 }
 .inputLabel, .outputLabel {
     font-size: 1.1rem;
     color: #111;
     font-weight: bold;
     margin-bottom: 0.1em;
-    /* Ensure labels in the row are always relative, not absolutely positioned */
     position: static !important;
     left: unset !important;
     top: unset !important;
     width: auto !important;
     height: auto !important;
-    z-index: unset !important;
+    z-index: 1 !important;
+    background: transparent;
+    padding: 2px 4px 1px 0;
+}
+
+@media (min-width: 1200px) {
+    .inputLabel, .outputLabel {
+        font-size: 1.28rem;
+        min-width: 130px;
+        text-align: left;
+        margin-bottom: 0.18em;
+        margin-top: 0.15em;
+        letter-spacing: 0.03em;
+    }
 }
 .labelsRow .inputLabel {
     order: 0;
@@ -91,7 +131,14 @@
 .areasWrap {
     display: flex;
     flex-direction: column;
-    gap: 1.3em;
+    gap: 1.45em;
+    z-index: 6;
+}
+
+@media (min-width: 1200px) {
+    .areasWrap {
+        gap: 2em;
+    }
 }
 .inputArea {
     width: 100%;
@@ -107,6 +154,18 @@
     font-family: inherit;
     resize: vertical;
     transition: border 0.2s;
+    z-index: 7;
+    position: relative;
+}
+
+@media (min-width: 1200px) {
+    .inputArea {
+        font-size: 1.19em;
+        min-height: 90px;
+        padding: 1.5em 1.15em;
+        margin-bottom: 0.5em;
+        border-radius: 17px;
+    }
 }
 .inputArea:focus {
     border-color: #1976d2;
@@ -116,8 +175,18 @@
     display: flex;
     background: none;
     align-items: flex-start;
-    gap: 0.4em;
+    gap: 0.6em;
     margin-bottom: 0.2em;
+    z-index: 7;
+}
+
+@media (min-width: 1200px) {
+    .outputAreaBox {
+        gap: 1.3em;
+        margin-bottom: 0.5em;
+        padding-right: 2em;
+        padding-left: 0.2em;
+    }
 }
 .outputArea {
     width: 100%;
@@ -133,6 +202,17 @@
     overflow: auto;
     pointer-events: none;
     transition: border .18s;
+    position: relative;
+    z-index: 7;
+}
+
+@media (min-width: 1200px) {
+    .outputArea {
+        font-size: 1.18em;
+        min-height: 90px;
+        border-radius: 17px;
+        padding: 1.5em 1.15em;
+    }
 }
 .copyBtn {
     min-width: 70px;
@@ -148,6 +228,18 @@
     cursor: pointer;
     font-weight: 500;
     transition: background 0.18s, color 0.18s;
+    z-index: 2;
+}
+
+@media (min-width: 1200px) {
+    .copyBtn {
+        min-width: 90px;
+        height: 44px;
+        font-size: 1.08em;
+        margin-left: 1.3em;
+        border-radius: 13px;
+        padding: 0 18px;
+    }
 }
 .copyBtn:active, .copyBtn:focus {
     background: #1976d2;
@@ -320,27 +412,34 @@
     .converterArea {
         padding: 1.2em 0.6em 1em 0.6em !important;
         min-width: 0 !important;
+        max-width: 99vw !important;
+        margin: 0 !important;
     }
     .labelsRow {
         flex-direction: column !important;
         gap: 0.7em !important;
         align-items: stretch !important;
         margin-bottom: 0.6em !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
     }
-    /* Make sure fields are full-width and no crowding at mobile */
     .labelsRow label {
         width: 100% !important;
         text-align: left !important;
         font-size: 1em !important;
+        min-width: 0 !important;
     }
     .outputAreaBox {
         flex-direction: column !important;
         gap: 0.6em !important;
         align-items: stretch !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
     }
     .copyBtn {
         min-width: unset !important;
         align-self: stretch !important;
+        margin-left: 0 !important;
     }
     .logoTitleGroup, .group1, .rectKey, .polygonKey, .vectorGraphic, .rectKey5, .keyRow, .figmaAbs,
     .inputLabel:not(.labelsRow .inputLabel), .outputLabel:not(.labelsRow .outputLabel),
@@ -415,6 +514,45 @@
 /* Everything */
 .figmaFrame * {
     box-sizing: border-box;
+}
+
+/* EXTRA LARGE DESKTOP: New desktop-only bezel to avoid overlap even on 4k and ultra-wide */
+@media (min-width: 1700px) {
+    .mainBackground {
+        max-width: 1100px !important;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0 !important;
+        right: 0 !important;
+        top: 7vw;
+        min-height: 520px;
+        box-shadow: 0 18px 60px 0 rgba(40, 60, 90, 0.13);
+    }
+    .converterArea {
+        min-width: 760px;
+        max-width: 1020px;
+        padding-left: 4.2em;
+        padding-right: 4.2em;
+    }
+    .labelsRow {
+        gap: 6.1em;
+        margin-bottom: 2em;
+        padding-right: 4.2em;
+        padding-left: 2.2em;
+    }
+    .areasWrap {
+        gap: 2.5em;
+    }
+    .copyBtn {
+        min-width: 120px;
+        height: 54px;
+        font-size: 1.13em;
+        margin-left: 2em;
+    }
+    .inputArea, .outputArea {
+        min-height: 120px;
+        font-size: 1.28em;
+    }
 }
 
 /* Labels */
