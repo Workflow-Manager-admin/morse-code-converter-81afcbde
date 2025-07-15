@@ -56,6 +56,13 @@
     color: #111;
     font-weight: bold;
     margin-bottom: 0.1em;
+    /* Ensure labels in the row are always relative, not absolutely positioned */
+    position: static !important;
+    left: unset !important;
+    top: unset !important;
+    width: auto !important;
+    height: auto !important;
+    z-index: unset !important;
 }
 .labelsRow .inputLabel {
     order: 0;
@@ -156,6 +163,7 @@
     display: none !important;
 }
 .inputPlaceholder, .outputPlaceholder {
+    /* On desktop, can appear, but always hide at ≤1020px via responsive below */
     position: absolute;
     left: 120px;
     font-size: 1.2em;
@@ -163,12 +171,41 @@
     width: 503px;
     height: 48px;
     z-index: 1;
+    white-space: nowrap;
+    pointer-events: none;
 }
 .inputPlaceholder {
     top: 163px;
 }
 .outputPlaceholder {
     top: 548px;
+}
+
+/* Make absolutely sure abs-text is never visible nor interactable on non-desktop: */
+@media (max-width: 1020px) {
+    .inputPlaceholder, .outputPlaceholder, .figmaAbs,
+    .inputLabel:not(.labelsRow .inputLabel),
+    .outputLabel:not(.labelsRow .outputLabel) {
+        display: none !important;
+    }
+}
+
+/* Increase specificity to always show the converter panel's flowing labels at all sizes */
+.labelsRow .inputLabel,
+.labelsRow .outputLabel {
+    display: block !important;
+    position: static !important;
+    font-size: 1.1rem !important;
+    color: #111 !important;
+    background: none !important;
+    margin-bottom: 0.1em !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    left: unset !important;
+    top: unset !important;
+    z-index: unset !important;
 }
 /* Figma visual rectangles for keys - preserved, mobile: collapse */
 .rectKey {
@@ -289,6 +326,12 @@
         gap: 0.7em !important;
         align-items: stretch !important;
         margin-bottom: 0.6em !important;
+    }
+    /* Make sure fields are full-width and no crowding at mobile */
+    .labelsRow label {
+        width: 100% !important;
+        text-align: left !important;
+        font-size: 1em !important;
     }
     .outputAreaBox {
         flex-direction: column !important;
