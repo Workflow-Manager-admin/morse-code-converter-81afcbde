@@ -1,0 +1,161 @@
+.figmaFrame {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background: #fff;
+    overflow: hidden;
+}
+
+/* Main background rectangle */
+.mainBackground {
+    position: absolute;
+    left: 91px;
+    top: 522px;
+    width: 1039px;
+    height: 464px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 30px;
+}
+
+/* Labels */
+.inputLabel {
+    position: absolute;
+    left: 94px;
+    top: 85px;
+    font-size: 32px;
+    color: #000;
+    font-weight: bold;
+    width: 135px;
+    height: 46px;
+    z-index: 1;
+}
+.outputLabel {
+    position: absolute;
+    left: 94px;
+    top: 470px;
+    font-size: 32px;
+    color: #000;
+    font-weight: bold;
+    width: 135px;
+    height: 46px;
+    z-index: 1;
+}
+.inputPlaceholder {
+    position: absolute;
+    left: 120px;
+    top: 163px;
+    font-size: 28px;
+    color: #a7a7a7;
+    width: 503px;
+    height: 48px;
+    z-index: 1;
+}
+.outputPlaceholder {
+    position: absolute;
+    left: 120px;
+    top: 548px;
+    font-size: 28px;
+    color: #a7a7a7;
+    width: 503px;
+    height: 48px;
+    z-index: 1;
+}
+
+/* Key rectangles */
+.rectKey {
+    position: absolute;
+    background: #000;
+    border-radius: 30px;
+}
+.rectKey1 {
+    left: 1227px;
+    top: 872px;
+    width: 120px;
+    height: 114px;
+}
+.rectKey2 {
+    left: 1387px;
+    top: 872px;
+    width: 120px;
+    height: 114px;
+}
+.rectKey3 {
+    left: 1547px;
+    top: 872px;
+    width: 120px;
+    height: 114px;
+}
+.rectKey4 {
+    left: 1707px;
+    top: 872px;
+    width: 120px;
+    height: 114px;
+}
+
+/* Polygon as button/arrow */
+.polygonKey {
+    position: absolute;
+    left: 1259px;
+    top: 901px;
+    width: 55px;
+    height: 55px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #000;
+}
+
+/* Logo/title group image */
+.logoTitleGroup {
+    position: absolute;
+    left: 1395px;
+    top: 107px;
+    width: 430px;
+    height: 30px;
+}
+
+/* Group 1 (keyboard/group button) */
+.group1 {
+    position: absolute;
+    left: 1430px;
+    top: 904px;
+    width: 35px;
+    height: 51px;
+}
+
+/* Generic vector, as placeholder for now */
+.vectorGraphic {
+    position: absolute;
+    left: 1750px;
+    top: 904px;
+    width: 35px;
+    height: 51px;
+    background: url('https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/528318b7-3777-489c-b5eb-cb3e55b5f7d9') no-repeat center center;
+    background-size: contain;
+}
+
+/* Another small key */
+.rectKey5 {
+    position: absolute;
+    left: 1582px;
+    top: 904px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #000;
+}
+
+/* Key rows/groups (as images for now) */
+.keyRow {
+    position: absolute;
+    left: 1227px;
+    width: 600px;
+    height: 98px;
+    z-index: 10;
+}
+
+/* All elements crisp on large canvas */
+.figmaFrame * {
+    box-sizing: border-box;
+}
