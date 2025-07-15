@@ -268,45 +268,105 @@
     height: auto;
 }
 /* Responsive logic: stack/narrow, reduce Figma keys on mobile, show only converter fields */
+/* Responsive reductions for screens up to 1020px width */
 @media (max-width: 1020px) {
     .mainBackground {
-        max-width: 96vw;
+        max-width: 98vw !important;
+        min-width: 0;
+        left: 0 !important;
+        top: 0.6rem !important;
         padding-left: 0.2em !important;
         padding-right: 0.2em !important;
+        border-radius: 14px !important;
+        box-shadow: 0 3px 10px 0 #ededed !important;
     }
-    .logoTitleGroup, .group1, .rectKey, .polygonKey, .vectorGraphic, .rectKey5, .keyRow {
-        display: none !important;
+    .converterArea {
+        padding: 1.2em 0.6em 1em 0.6em !important;
+        min-width: 0 !important;
     }
-    .figmaAbs {
+    .labelsRow {
+        flex-direction: column !important;
+        gap: 0.7em !important;
+        align-items: stretch !important;
+        margin-bottom: 0.6em !important;
+    }
+    .outputAreaBox {
+        flex-direction: column !important;
+        gap: 0.6em !important;
+        align-items: stretch !important;
+    }
+    .copyBtn {
+        min-width: unset !important;
+        align-self: stretch !important;
+    }
+    .logoTitleGroup, .group1, .rectKey, .polygonKey, .vectorGraphic, .rectKey5, .keyRow, .figmaAbs,
+    .inputLabel:not(.labelsRow .inputLabel), .outputLabel:not(.labelsRow .outputLabel),
+    .inputPlaceholder, .outputPlaceholder {
+        /* Hide all Figma decor and absolute text placeholders at non-desktop widths for usable UI */
         display: none !important;
     }
 }
+
+/* Further tighten/stack at small screens */
 @media (max-width: 700px) {
     .mainBackground {
-        max-width: 98vw;
-        left: 0;
-        top: 0.6rem;
+        max-width: 99vw !important;
         min-width: 0;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px 0 #ddd;
-        padding: 0.5em;
+        left: 0 !important;
+        top: 0.1rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 1px 7px 0 #eee !important;
+        padding: 0.3em 0.1em 0.5em 0.1em !important;
     }
     .converterArea {
-        padding: 1.1em 0.7em 0.5em 0.7em;
-        min-width: 0;
+        padding: 0.8em 0.25em 0.5em 0.25em !important;
+    }
+    .inputArea, .outputArea {
+        font-size: 0.98em !important;
+        padding: 0.7em 0.5em !important;
+    }
+    .labelsRow label {
+        font-size: 1em !important;
     }
     .labelsRow {
-        flex-direction: column;
-        gap: 0.7em;
-        align-items: stretch;
+        gap: 0.5em !important;
+    }
+    .inputLabel, .outputLabel {
+        font-size: 1em !important;
+        height: auto !important;
+        width: 100% !important;
+        left: unset !important; /* disable absolute placement */
+        top: unset !important;
+        position: static !important;
     }
     .outputAreaBox {
-        flex-direction: column;
-        gap: 0.6em;
+        gap: 0.4em !important;
     }
-    .copyBtn {
-        min-width: unset;
-        align-self: stretch;
+}
+
+/* Fix any overflow or crowding on ultra-small devices */
+@media (max-width: 430px) {
+    .converterArea {
+        padding: 0.5em 0.05em 0.2em 0.05em !important;
+    }
+    .mainBackground {
+        padding: 0.1em !important;
+        border-radius: 7px !important;
+    }
+    .labelsRow {
+        font-size: 0.97em !important;
+    }
+    .inputArea, .outputArea {
+        font-size: 0.91em !important;
+        padding: 0.65em 0.35em !important;
+    }
+}
+
+/* Always ensure absolute Figma decor never overlaps converter on <1020px */
+@media (max-width: 1020px) {
+    .rectKey, .rectKey1, .rectKey2, .rectKey3, .rectKey4, .rectKey5,
+    .logoTitleGroup, .vectorGraphic, .group1, .keyRow, .polygonKey {
+        display: none !important;
     }
 }
 /* Everything */
